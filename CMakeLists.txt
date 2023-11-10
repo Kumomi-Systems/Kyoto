@@ -21,5 +21,6 @@ add_executable(
 
 	src/kyoto.cpp
 
+	src/core/logic.cpp
 	src/core/tryte.cpp
 )

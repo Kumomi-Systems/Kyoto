@@ -6,7 +6,7 @@
 #define BITS_PER_BYTE	8
 #define TRIT_MASK		0b11
  
-typedef enum Trit:char
+typedef enum Trit:unsigned char
 {
 	FALSE	= 0b00,	// This allows us to do some clever boolean casting
 	UNKNOWN	= 0b01,
@@ -17,6 +17,7 @@ typedef enum Trit:char
 #define TRITS_PER_TRYTE	9
 
 OPTION_PACKED
+/// Tryte class
 class Tryte
 {
 	public:
@@ -29,3 +30,6 @@ class Tryte
 	private:
 		unsigned char Trits[BYTES_PER_TRYTE];
 };
+
+Trit& operator++(Trit& a);
+Trit operator++(Trit& a, int);

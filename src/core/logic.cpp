@@ -7,7 +7,7 @@ same amount of time to return regardless of input, allowing for a more accurate
 representation of a real system.
 */
 
-Trit Tritret;
+#define TritSetup Trit Tritret
 
 #define TritMonadicBind(input, output)				\
 if(a == Trit::input)								\
@@ -20,145 +20,21 @@ if(													\
 )													\
 	Tritret = Trit::output;
 
-#define TritReturn return Tritret;
+#define TritReturn { a = Tritret; return a; }
 
-/// @brief Ternary tritwise NOT operator
-Trit operator!(Trit a)
+Trit& operator++(Trit& a)
 {
-	TritMonadicBind(FALSE,		TRUE);
-	TritMonadicBind(UNKNOWN,	UNKNOWN);
-	TritMonadicBind(TRUE,		FALSE);
-	TritReturn;
-}
-
-Trit NTI(Trit a)
-{
-	TritMonadicBind(FALSE,		TRUE);
-	TritMonadicBind(UNKNOWN,	FALSE);
-	TritMonadicBind(TRUE,		FALSE);
-	TritReturn;
-}
-
-Trit PTI(Trit a)
-{
-	TritMonadicBind(FALSE,		TRUE);
-	TritMonadicBind(UNKNOWN,	TRUE);
-	TritMonadicBind(TRUE,		FALSE);
-	TritReturn;
-}
-
-Trit operator++(Trit a)
-{
+	TritSetup;
 	TritMonadicBind(FALSE,		UNKNOWN);
 	TritMonadicBind(UNKNOWN,	TRUE);
 	TritMonadicBind(TRUE,		FALSE);
 	TritReturn;
 }
 
-Trit operator--(Trit a)
+Trit operator++(Trit& a, int)
 {
-	TritMonadicBind(FALSE,		TRUE);
-	TritMonadicBind(UNKNOWN,	FALSE);
-	TritMonadicBind(TRUE,		UNKNOWN);
-	TritReturn;
-}
-
-Trit ClampDown(Trit a)
-{
-	TritMonadicBind(FALSE,		FALSE);
-	TritMonadicBind(UNKNOWN,	UNKNOWN);
-	TritMonadicBind(TRUE,		UNKNOWN);
-	TritReturn;
-}
-
-Trit ClampUp(Trit a)
-{
-	TritMonadicBind(FALSE,		UNKNOWN);
-	TritMonadicBind(UNKNOWN,	UNKNOWN);
-	TritMonadicBind(TRUE,		TRUE);
-	TritReturn;
-}
-
-Trit operator&(Trit a, Trit b)
-{
-	TritDyadicBind(FALSE,		FALSE,		FALSE);
-	TritDyadicBind(FALSE,		UNKNOWN,	FALSE);
-	TritDyadicBind(FALSE,		TRUE,		FALSE);
-	TritDyadicBind(UNKNOWN,		FALSE,		FALSE);
-	TritDyadicBind(UNKNOWN,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(UNKNOWN,		TRUE,		UNKNOWN);
-	TritDyadicBind(TRUE,		FALSE,		FALSE);
-	TritDyadicBind(TRUE,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(TRUE,		TRUE,		TRUE);
-	TritReturn;
-}
-
-Trit operator|(Trit a, Trit b)
-{
-	TritDyadicBind(FALSE,		FALSE,		FALSE);
-	TritDyadicBind(FALSE,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(FALSE,		TRUE,		TRUE);
-	TritDyadicBind(UNKNOWN,		FALSE,		UNKNOWN);
-	TritDyadicBind(UNKNOWN,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(UNKNOWN,		TRUE,		TRUE);
-	TritDyadicBind(TRUE,		FALSE,		TRUE);
-	TritDyadicBind(TRUE,		UNKNOWN,	TRUE);
-	TritDyadicBind(TRUE,		TRUE,		TRUE);
-	TritReturn;
-}
-
-Trit operator^(Trit a, Trit b)
-{
-	TritDyadicBind(FALSE,		FALSE,		FALSE);
-	TritDyadicBind(FALSE,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(FALSE,		TRUE,		TRUE);
-	TritDyadicBind(UNKNOWN,		FALSE,		UNKNOWN);
-	TritDyadicBind(UNKNOWN,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(UNKNOWN,		TRUE,		UNKNOWN);
-	TritDyadicBind(TRUE,		FALSE,		TRUE);
-	TritDyadicBind(TRUE,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(TRUE,		TRUE,		FALSE);
-	TritReturn;
-}
-
-Trit Concensus(Trit a, Trit b)
-{
-	TritDyadicBind(FALSE,		FALSE,		FALSE);
-	TritDyadicBind(FALSE,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(FALSE,		TRUE,		UNKNOWN);
-	TritDyadicBind(UNKNOWN,		FALSE,		UNKNOWN);
-	TritDyadicBind(UNKNOWN,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(UNKNOWN,		TRUE,		UNKNOWN);
-	TritDyadicBind(TRUE,		FALSE,		UNKNOWN);
-	TritDyadicBind(TRUE,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(TRUE,		TRUE,		TRUE);
-	TritReturn;
-}
-
-Trit AcceptAnything(Trit a, Trit b)
-{
-	TritDyadicBind(FALSE,		FALSE,		FALSE);
-	TritDyadicBind(FALSE,		UNKNOWN,	FALSE);
-	TritDyadicBind(FALSE,		TRUE,		UNKNOWN);
-	TritDyadicBind(UNKNOWN,		FALSE,		FALSE);
-	TritDyadicBind(UNKNOWN,		UNKNOWN,	UNKNOWN);
-	TritDyadicBind(UNKNOWN,		TRUE,		TRUE);
-	TritDyadicBind(TRUE,		FALSE,		UNKNOWN);
-	TritDyadicBind(TRUE,		UNKNOWN,	TRUE);
-	TritDyadicBind(TRUE,		TRUE,		TRUE);
-	TritReturn;
-}
-
-Trit operator==(Trit a, Trit b)
-{
-	TritDyadicBind(FALSE,		FALSE,		TRUE);
-	TritDyadicBind(FALSE,		UNKNOWN,	FALSE);
-	TritDyadicBind(FALSE,		TRUE,		FALSE);
-	TritDyadicBind(UNKNOWN,		FALSE,		FALSE);
-	TritDyadicBind(UNKNOWN,		UNKNOWN,	TRUE);
-	TritDyadicBind(UNKNOWN,		TRUE,		FALSE);
-	TritDyadicBind(TRUE,		FALSE,		FALSE);
-	TritDyadicBind(TRUE,		UNKNOWN,	FALSE);
-	TritDyadicBind(TRUE,		TRUE,		TRUE);
+	TritSetup;
+	Tritret = a;
+	++a;
 	TritReturn;
 }

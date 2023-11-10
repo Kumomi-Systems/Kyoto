@@ -129,6 +129,30 @@ Kyoto/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Kyoto.dir/build.make CMakeFiles/Kyoto.dir/build
 .PHONY : Kyoto/fast
 
+src/core/logic.o: src/core/logic.cpp.o
+.PHONY : src/core/logic.o
+
+# target to build an object file
+src/core/logic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Kyoto.dir/build.make CMakeFiles/Kyoto.dir/src/core/logic.cpp.o
+.PHONY : src/core/logic.cpp.o
+
+src/core/logic.i: src/core/logic.cpp.i
+.PHONY : src/core/logic.i
+
+# target to preprocess a source file
+src/core/logic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Kyoto.dir/build.make CMakeFiles/Kyoto.dir/src/core/logic.cpp.i
+.PHONY : src/core/logic.cpp.i
+
+src/core/logic.s: src/core/logic.cpp.s
+.PHONY : src/core/logic.s
+
+# target to generate assembly for a file
+src/core/logic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Kyoto.dir/build.make CMakeFiles/Kyoto.dir/src/core/logic.cpp.s
+.PHONY : src/core/logic.cpp.s
+
 src/core/tryte.o: src/core/tryte.cpp.o
 .PHONY : src/core/tryte.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Kyoto"
+	@echo "... src/core/logic.o"
+	@echo "... src/core/logic.i"
+	@echo "... src/core/logic.s"
 	@echo "... src/core/tryte.o"
 	@echo "... src/core/tryte.i"
 	@echo "... src/core/tryte.s"
