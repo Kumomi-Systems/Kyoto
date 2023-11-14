@@ -7,34 +7,301 @@ same amount of time to return regardless of input, allowing for a more accurate
 representation of a real system.
 */
 
-#define TritSetup Trit Tritret
+// TODO: Find a nice series of macros for writing these
 
-#define TritMonadicBind(input, output)				\
-if(a == Trit::input)								\
-	Tritret = Trit::output;
+Trit operator!(Trit a)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::TRUE;
+	if(a == Trit::UNKNOWN);
+		ret = Trit::UNKNOWN;
+	if(a == Trit::TRUE)
+		ret = Trit::FALSE;
+	return ret;
+}
 
-#define TritDyadicBind(input1, input2, output)		\
-if(													\
-	a << BITS_PER_TRIT | b ==						\
-	Trit::input1 << BITS_PER_TRIT | Trit::input2	\
-)													\
-	Tritret = Trit::output;
+Trit NTI(Trit a)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::TRUE;
+	if(a == Trit::UNKNOWN)
+		ret = Trit::FALSE;
+	if(a == Trit::TRUE)
+		ret = Trit::FALSE;
+	return ret;
+}
 
-#define TritReturn { a = Tritret; return a; }
+Trit PTI(Trit a)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::TRUE;
+	if(a == Trit::UNKNOWN)
+		ret = Trit::TRUE;
+	if(a == Trit::TRUE)
+		ret = Trit::FALSE;
+	return ret;
+}
 
 Trit& operator++(Trit& a)
 {
-	TritSetup;
-	TritMonadicBind(FALSE,		UNKNOWN);
-	TritMonadicBind(UNKNOWN,	TRUE);
-	TritMonadicBind(TRUE,		FALSE);
-	TritReturn;
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::UNKNOWN;
+	if(a == Trit::UNKNOWN)
+		ret = Trit::TRUE;
+	if(a == Trit::TRUE)
+		ret = Trit::FALSE;
+	a = ret;
+	return a;
 }
 
 Trit operator++(Trit& a, int)
 {
-	TritSetup;
-	Tritret = a;
+	Trit ret = a;
 	++a;
-	TritReturn;
+	return ret;
+}
+
+Trit& operator--(Trit& a)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::TRUE;
+	if(a == Trit::UNKNOWN)
+		ret = Trit::FALSE;
+	if(a == Trit::TRUE)
+		ret = Trit::UNKNOWN;
+	a = ret;
+	return a;
+}
+
+Trit operator--(Trit& a, int)
+{
+	Trit ret = a;
+	--a;
+	return ret;
+}
+
+Trit clampDown(Trit a)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::FALSE;
+	if(a == Trit::UNKNOWN)
+		ret = Trit::UNKNOWN;
+	if(a == Trit::TRUE)
+		ret = Trit::UNKNOWN;
+	return ret;
+}
+
+Trit clampUp(Trit a)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+		ret = Trit::UNKNOWN;
+	if(a == Trit::UNKNOWN)
+		ret = Trit::UNKNOWN;
+	if(a == Trit::TRUE)
+		ret = Trit::TRUE;
+}
+
+Trit operator&(Trit a, Trit b)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::FALSE;
+		if(b == Trit::TRUE)
+			ret = Trit::FALSE;
+	}
+	if(a == Trit::UNKNOWN)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::UNKNOWN;
+	}
+	if(a == Trit::TRUE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	return ret;
+}
+
+Trit operator|(Trit a, Trit b)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	if(a == Trit::UNKNOWN)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	if(a == Trit::TRUE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::TRUE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::TRUE;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	return ret;
+}
+
+Trit operator^(Trit a, Trit b)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	if(a == Trit::UNKNOWN)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::UNKNOWN;
+	}
+	if(a == Trit::TRUE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::TRUE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::FALSE;
+	}
+	return ret;
+}
+
+Trit cons(Trit a, Trit b)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::UNKNOWN;
+	}
+	if(a == Trit::UNKNOWN)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::UNKNOWN;
+	}
+	if(a == Trit::TRUE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::FALSE;
+	}
+	return ret;
+}
+
+Trit any(Trit a, Trit b)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::FALSE;
+		if(b == Trit::TRUE)
+			ret = Trit::UNKNOWN;
+	}
+	if(a == Trit::UNKNOWN)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	if(a == Trit::TRUE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::UNKNOWN;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::TRUE;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	return ret;
+}
+
+Trit operator==(Trit a, Trit b)
+{
+	Trit ret;
+	if(a == Trit::FALSE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::TRUE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::FALSE;
+		if(b == Trit::TRUE)
+			ret = Trit::FALSE;
+	}
+	if(a == Trit::UNKNOWN)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::TRUE;
+		if(b == Trit::TRUE)
+			ret = Trit::FALSE;
+	}
+	if(a == Trit::TRUE)
+	{
+		if(b == Trit::FALSE)
+			ret = Trit::FALSE;
+		if(b == Trit::UNKNOWN)
+			ret = Trit::FALSE;
+		if(b == Trit::TRUE)
+			ret = Trit::TRUE;
+	}
+	return ret;
 }

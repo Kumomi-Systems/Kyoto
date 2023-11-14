@@ -4,13 +4,13 @@
 
 const char* KyotoLogo = 
 R"(
-	  -,____,-
-		-.-\
+      -,____,-
+        -.-\
    --.,____,;,.--
-	   /-.-.-
+       /-.-.-
 '--=.,;,______,.=--'
 
-	Kyoto Engine
+    Kyoto Engine
 )";
 
 int main()
