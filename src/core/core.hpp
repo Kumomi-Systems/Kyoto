@@ -33,46 +33,46 @@ class Tryte
 
 /// @brief Ternary NOT operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator!(Trit a);
+inline Trit operator!(Trit a);
 /// @brief Ternary Negative Threshold Inverter
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit NTI(Trit a);
+inline Trit NTI(Trit a);
 /// @brief Ternary Positive Threshold Inverter
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit PTI(Trit a);
+inline Trit PTI(Trit a);
 /// @brief Ternary prefix increment operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit& operator++(Trit& a);
+inline Trit& operator++(Trit& a);
 /// @brief Ternary postfix increment operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator++(Trit& a, int);
+inline Trit operator++(Trit& a, int);
 /// @brief Ternary prefix decrement operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit& operator--(Trit& a);
+inline Trit& operator--(Trit& a);
 /// @brief Ternary postfix decrement operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator--(Trit& a, int);
+inline Trit operator--(Trit& a, int);
 /// @brief Ternary clamp down
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit clampDown(Trit a);
+inline Trit clampDown(Trit a);
 /// @brief Ternary clamp up
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit clampUp(Trit a);
+inline Trit clampUp(Trit a);
 /// @brief Ternary AND operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator&(Trit a, Trit b);
+inline Trit operator&(Trit a, Trit b);
 /// @brief Ternary OR operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator|(Trit a, Trit b);
+inline Trit operator|(Trit a, Trit b);
 /// @brief Ternary XOR operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator^(Trit a, Trit b);
+inline Trit operator^(Trit a, Trit b);
 /// @brief Ternary consensus
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit cons(Trit a, Trit b);
+inline Trit cons(Trit a, Trit b);
 /// @brief Ternary accept anything
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit any(Trit a, Trit b);
+inline Trit any(Trit a, Trit b);
 /// @brief Ternary equality operator
 /// @see The Ternary Manifesto (Jones, 2012)
-Trit operator==(Trit a, Trit b);
+inline Trit operator==(Trit a, Trit b);

@@ -9,7 +9,7 @@ representation of a real system.
 
 // TODO: Find a nice series of macros for writing these
 
-Trit operator!(Trit a)
+inline Trit operator!(Trit a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -21,7 +21,7 @@ Trit operator!(Trit a)
 	return ret;
 }
 
-Trit NTI(Trit a)
+inline Trit NTI(Trit a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -33,7 +33,7 @@ Trit NTI(Trit a)
 	return ret;
 }
 
-Trit PTI(Trit a)
+inline Trit PTI(Trit a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -45,7 +45,7 @@ Trit PTI(Trit a)
 	return ret;
 }
 
-Trit& operator++(Trit& a)
+inline Trit& operator++(Trit& a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -58,14 +58,14 @@ Trit& operator++(Trit& a)
 	return a;
 }
 
-Trit operator++(Trit& a, int)
+inline Trit operator++(Trit& a, int)
 {
 	Trit ret = a;
 	++a;
 	return ret;
 }
 
-Trit& operator--(Trit& a)
+inline Trit& operator--(Trit& a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -78,14 +78,14 @@ Trit& operator--(Trit& a)
 	return a;
 }
 
-Trit operator--(Trit& a, int)
+inline Trit operator--(Trit& a, int)
 {
 	Trit ret = a;
 	--a;
 	return ret;
 }
 
-Trit clampDown(Trit a)
+inline Trit clampDown(Trit a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -97,7 +97,7 @@ Trit clampDown(Trit a)
 	return ret;
 }
 
-Trit clampUp(Trit a)
+inline Trit clampUp(Trit a)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -108,7 +108,7 @@ Trit clampUp(Trit a)
 		ret = Trit::TRUE;
 }
 
-Trit operator&(Trit a, Trit b)
+inline Trit operator&(Trit a, Trit b)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -141,7 +141,7 @@ Trit operator&(Trit a, Trit b)
 	return ret;
 }
 
-Trit operator|(Trit a, Trit b)
+inline Trit operator|(Trit a, Trit b)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -174,7 +174,7 @@ Trit operator|(Trit a, Trit b)
 	return ret;
 }
 
-Trit operator^(Trit a, Trit b)
+inline Trit operator^(Trit a, Trit b)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -207,7 +207,7 @@ Trit operator^(Trit a, Trit b)
 	return ret;
 }
 
-Trit cons(Trit a, Trit b)
+inline Trit cons(Trit a, Trit b)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -240,7 +240,7 @@ Trit cons(Trit a, Trit b)
 	return ret;
 }
 
-Trit any(Trit a, Trit b)
+inline Trit any(Trit a, Trit b)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
@@ -273,7 +273,7 @@ Trit any(Trit a, Trit b)
 	return ret;
 }
 
-Trit operator==(Trit a, Trit b)
+inline Trit operator==(Trit a, Trit b)
 {
 	Trit ret;
 	if(a == Trit::FALSE)
